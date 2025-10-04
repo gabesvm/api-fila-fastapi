@@ -58,6 +58,15 @@ def encontrar_por_posicao(posicao: int) -> Optional[Cliente]:
 # ENDPOINTS
 # ----------------------------
 
+@app.get("/", summary="Status da API")
+def raiz():
+    return {
+        "mensagem": "API Fila de Atendimento online",
+        "docs": "/docs",
+        "endpoints": ["/fila", "/fila/{id}"]
+    }
+
+
 @app.get("/fila", response_model=List[Cliente], summary="Lista a fila (apenas não atendidos)")
 def get_fila():
     ordenar_recalcular_posicoes()
